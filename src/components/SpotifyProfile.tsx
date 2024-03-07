@@ -35,6 +35,29 @@ export const SpotifyProfile = () => {
             <p className="my-2">{playlistsData?.items?.length} playlists</p>
           </div>
         </div>
+
+        {playlistsIsLoading ? (
+          <p>Loading...</p>
+        ) : (
+          <div className="flex flex-col gap-y-2">
+            {playlistsData?.items?.map(
+              (playlist: any, index: number) =>
+                index < 5 && (
+                  <div
+                    key={playlist.id}
+                    className="rounded bg-slate-600 p-2 shadow"
+                  >
+                    <img
+                      src={playlist.images[0].url}
+                      alt="Playlist"
+                      className="size-24"
+                    />
+                    <p className="text-slate-100">{playlist.name}</p>
+                  </div>
+                ),
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
