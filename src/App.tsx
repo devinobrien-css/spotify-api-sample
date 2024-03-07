@@ -1,27 +1,36 @@
 import { Icon } from '@iconify/react';
+import { useGlobalContext } from './context/useGlobalContext';
+import { SpotifyProfile } from './components/SpotifyProfile';
 
 const App = () => {
+  const { token } = useGlobalContext();
+
   return (
-    <div className='min-h-screen bg-slate-700'>
-
-
-      <div className='w-full h-screen flex flex-col'>
-        <div className='m-auto '>
-          <div className='flex gap-x-2 mx-auto w-fit'>
-            <Icon icon='vscode-icons:file-type-vite' className='size-24' />
-            <Icon icon="fa-solid:plus" className='size-12 my-auto text-slate-300' />
-            <Icon icon='vscode-icons:file-type-reactjs' className='size-24' />
-            <Icon icon="fa-solid:plus" className='size-12 my-auto text-slate-300' />
-            <Icon icon='logos:spotify-icon' className='size-24' />
+    <div className="min-h-screen bg-slate-700">
+      <div className="flex h-screen w-full flex-col">
+        <div className="m-auto ">
+          <div className="mx-auto flex w-fit gap-x-2">
+            <Icon icon="vscode-icons:file-type-vite" className="size-24" />
+            <Icon
+              icon="fa-solid:plus"
+              className="my-auto size-12 text-slate-300"
+            />
+            <Icon icon="vscode-icons:file-type-reactjs" className="size-24" />
+            <Icon
+              icon="fa-solid:plus"
+              className="my-auto size-12 text-slate-300"
+            />
+            <Icon icon="logos:spotify-icon" className="size-24" />
           </div>
-          <h1 className='text-4xl text-center text-white font-bold mt-10'>Vite + React + Spotify API</h1>
+          <h1 className="mt-10 text-center text-4xl font-bold text-white">
+            Vite + React + Spotify API
+          </h1>
         </div>
       </div>
 
+      <SpotifyProfile />
     </div>
+  );
+};
 
-  )
-}
-
-export default App
-
+export default App;
