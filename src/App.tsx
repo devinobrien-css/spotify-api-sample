@@ -1,10 +1,8 @@
 import { Icon } from '@iconify/react';
-import { useGlobalContext } from './context/useGlobalContext';
 import { SpotifyProfile } from './components/SpotifyProfile';
+import { TopArtists } from './components/TopArtists';
 
 const App = () => {
-  const { token } = useGlobalContext();
-
   return (
     <div className="min-h-screen bg-slate-700">
       <div className="flex h-screen w-full flex-col">
@@ -29,6 +27,8 @@ const App = () => {
       </div>
 
       <SpotifyProfile />
+
+      <TopArtists />
     </div>
   );
 };
