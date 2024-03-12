@@ -64,7 +64,6 @@ export const getSpotifyUser = async (token: string) => {
 export const getSpotifyPlaylists = async (token: string) => {
   const url = 'https://api.spotify.com/v1/users/dobrien23/playlists';
 
-  console.log(token);
   if (!token) return {};
 
   try {
@@ -104,10 +103,6 @@ const artists = [
   {
     name: 'Tame Impala',
     id: '5INjqkS1o8h1imAzPqGZBb',
-  },
-  {
-    name: 'The Backseat Lovers',
-    id: '6p2HnfM955TI1bX34dkLnI',
   },
   {
     name: 'Steve Lacy',
@@ -156,6 +151,26 @@ export const getTopArtists = async (token: string) => {
  */
 export const getUsersTopArtists = async (token: string) => {
   const url = 'https://api.spotify.com/v1/me/top/artists';
+  try {
+    const res = await axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (res.status !== 200) {
+      throw new Error('Failed to fetch data');
+    }
+    const responseData = await res.data;
+    return responseData;
+  } catch (error) {
+    console.error('Error:', error);
+  }
+  return undefined;
+};
+
+export const getSongs = async (token: string) => {
+  const url =
+    'https://api.spotify.com/v1/playlists/0cyRImDMXpuYReVLJOI9vc/tracks';
   try {
     const res = await axios.get(url, {
       headers: {

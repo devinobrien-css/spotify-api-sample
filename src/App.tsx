@@ -1,6 +1,5 @@
 import { Icon } from '@iconify/react';
 import { SpotifyProfile } from './components/SpotifyProfile';
-import { TopArtists } from './components/TopArtists';
 
 const App = () => {
   return (
@@ -25,10 +24,7 @@ const App = () => {
           </h1>
         </div>
       </div>
-
       <SpotifyProfile />
-
-      <TopArtists />
     </div>
   );
 };

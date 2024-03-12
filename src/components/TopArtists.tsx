@@ -3,34 +3,34 @@ import { useGlobalContext } from '../context/useGlobalContext';
 import { getTopArtists } from '../api';
 
 export const TopArtists = () => {
-  const { token, access_token } = useGlobalContext();
-
-  const { data, isLoading } = useQuery({
+  const { token } = useGlobalContext();
+  const { data: artists, isLoading: isArtistsLoading } = useQuery({
     queryKey: ['top-artists'],
     queryFn: async () => await getTopArtists(token),
     enabled: !!token,
   });
 
-  console.log(data);
-
   return (
-    <div className="flex min-h-screen flex-col">
-      <div className="m-auto rounded-lg bg-slate-800 p-12">
-        <h1 className="text-4xl font-bold text-slate-100">Top Artists</h1>
-
-        <div className="flex flex-col gap-y-2">
-          {data?.artists?.map((artist: any) => (
-            <div key={artist.id} className="rounded bg-slate-600 p-2 shadow">
-              <img
-                src={artist.images[0].url}
-                alt="Artist"
-                className="size-24"
-              />
-              <p className="text-slate-100">{artist.name}</p>
-            </div>
-          ))}
-        </div>
+    <>
+      <h1 className="text-4xl font-bold text-slate-100">Top Artists</h1>
+      <br />
+      <div className="flex w-fit flex-wrap justify-evenly gap-2">
+        {artists?.artists?.map((artist: any) => (
+          <a
+            key={artist.id}
+            target="_blank"
+            href={artist.external_urls.spotify}
+            className="rounded p-2 transition-all hover:bg-slate-600/20 hover:shadow"
+          >
+            <img
+              src={artist.images[0].url}
+              alt="Artist"
+              className="mx-auto size-24 rounded-full"
+            />
+            <p className="text-center text-slate-100">{artist.name}</p>
+          </a>
+        ))}
       </div>
-    </div>
+    </>
   );
 };
